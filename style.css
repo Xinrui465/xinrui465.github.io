@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameCanvas {
+    display: block;
+    background: #2a2a2a;
+    max-width: 100%;
+    max-height: 100%;
+    touch-action: none;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 100;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+.screen h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #ff6b6b;
+}
+
+.screen h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.screen p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+#gameUI {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 50;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#gameUI.hidden {
+    display: none;
+}
+
+#score, #lives {
+    margin-bottom: 5px;
+}
+
+/* 手机控制界面 */
+#controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 50;
+    pointer-events: none;
+}
+
+#controls.hidden {
+    display: none;
+}
+
+/* 虚拟摇杆 */
+#joystick {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 120px;
+    height: 120px;
+    pointer-events: auto;
+}
+
+#joystickBase {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+}
+
+#joystickHandle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    transition: transform 0.1s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#joystickHandle.active {
+    background: rgba(255, 107, 107, 0.9);
+}
+
+/* 射击按钮 */
+#shootBtn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 107, 107, 0.8);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    transition: all 0.1s;
+}
+
+#shootBtn:active {
+    transform: scale(0.9);
+    background: rgba(255, 107, 107, 1);
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.6);
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .screen h1 {
+        font-size: 2rem;
+    }
+    
+    .screen h2 {
+        font-size: 1.5rem;
+    }
+    
+    .screen p {
+        font-size: 1.2rem;
+    }
+    
+    #joystick {
+        width: 100px;
+        height: 100px;
+    }
+    
+    #joystickHandle {
+        width: 40px;
+        height: 40px;
+        margin: -20px 0 0 -20px;
+    }
+    
+    #shootBtn {
+        width: 80px;
+        height: 80px;
+        font-size: 1rem;
+    }
+    
+    #gameUI {
+        font-size: 1rem;
+    }
+}
+
+/* 横屏适配 */
+@media (orientation: landscape) and (max-height: 500px) {
+    #controls {
+        height: 150px;
+    }
+    
+    #joystick {
+        width: 90px;
+        height: 90px;
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    #joystickHandle {
+        width: 35px;
+        height: 35px;
+        margin: -17.5px 0 0 -17.5px;
+    }
+    
+    #shootBtn {
+        width: 70px;
+        height: 70px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 0.9rem;
+    }
+}
+
+

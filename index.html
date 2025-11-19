@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>坦克大战</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- 游戏开始界面 -->
+        <div id="startScreen" class="screen">
+            <h1>坦克大战</h1>
+            <button id="startBtn" class="btn">开始游戏</button>
+        </div>
+        
+        <!-- 游戏结束界面 -->
+        <div id="gameOverScreen" class="screen hidden">
+            <h2 id="gameOverTitle">游戏结束</h2>
+            <p id="gameOverScore">得分: 0</p>
+            <button id="restartBtn" class="btn">重新开始</button>
+        </div>
+        
+        <!-- 游戏UI -->
+        <div id="gameUI" class="hidden">
+            <div id="score">得分: 0</div>
+            <div id="lives">生命: 3</div>
+        </div>
+        
+        <!-- 手机控制界面 -->
+        <div id="controls" class="hidden">
+            <!-- 虚拟摇杆 -->
+            <div id="joystick">
+                <div id="joystickBase"></div>
+                <div id="joystickHandle"></div>
+            </div>
+            
+            <!-- 射击按钮 -->
+            <button id="shootBtn" class="control-btn">射击</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
+
+
